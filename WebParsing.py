@@ -22,3 +22,26 @@ links_content = r.html.find('#content', first=True)     # Add first=True to get 
 #print(links_content.tag)   return the found tag  
 
 extracted_cards = links_content.find('a')       # return a list
+
+print(len(extracted_cards))
+print()
+print(str(extracted_cards[18]))
+print()
+print(extracted_cards[18].attrs['class'][0] == "listing-link")      # access class by attrs['class'][idx_class1][idx_class2]
+print()
+print(extracted_cards[18].attrs['href'])
+
+html = '''
+<html>
+    <body>
+        <h1>URL results</h1>
+        <div>
+            <a>''' + extracted_cards[18].attrs['href'] + '''</a>
+        </div>
+    </body>
+</html>
+'''
+
+html_output = open("output.html", "w")
+html_output.write(html)
+html_output.close()
