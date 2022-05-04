@@ -1,6 +1,6 @@
-from bs4 import BeautifulSoup
 from requests_html import HTML, HTMLSession 
-
+from DummyFunctions import *
+from Tester import _test_print_contents_
 
 dummy_url = 'https://www.etsy.com/c/home-and-living?ref=catnav-891'
 
@@ -22,6 +22,14 @@ links_content = r.html.find('#content', first=True)     # Add first=True to get 
 #print(links_content.tag)   return the found tag  
 
 extracted_cards = links_content.find('a')       # return a list
+
+_test_print_contents_(extracted_cards)
+
+#result = _item_filter_(extracted_cards)
+
+#_test_complete_traversing_(result, extracted_cards)
+#_print_items_(extracted_cards)
+
 
 print(len(extracted_cards))
 print()
