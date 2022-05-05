@@ -1,4 +1,4 @@
-def _item_filter_(result_links) -> list:
+def ItemFilter(result_links) -> list:
   result = []
   
   for link in result_links:
@@ -10,9 +10,6 @@ def _item_filter_(result_links) -> list:
       
   return result
 
-def _print_items_(result):
-  for item in result:
-    print(item, '\n')
   
   
   
