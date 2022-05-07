@@ -1,38 +1,51 @@
-from requests_html import HTML, HTMLSession 
-from Parser import ItemFilter
-from Tester import TestPrintContents, TestTotalTraversing
-
 """Description:
 This project use reuqests-html open source to parsing etsy 
 Result will be the urls of items that user input
 """
 
+from requests_html import HTML, HTMLSession 
+from parser import getCorrectCard, getContents
+from tester import printContents, testTotalTraversing
 
 """Main Section"""
 test_url = 'https://www.etsy.com/c/home-and-living?ref=catnav-891'
 session = HTMLSession()
 r = session.get(test_url)
 
+contents = getContents(r)
+
+correct_cards = getCorrectCard(contents)
+
+""" Test Section"""
+
+print(correct_cards)
+printContents(correct_cards)
+
+
+
+
+
+
+
+
+# ------------------------ Experiment Section ---------------------------------#
+
+# Test single element before implementation
+# extracted_cards = contents
+# print("number of elements: ",len(extracted_cards))
+# print()
+# print("print dictionary of attrs: ", str(extracted_cards[18].attrs))
+# print()
+# print("Key of attrs ", extracted_cards[18].attrs.keys())
+# print()
+# print("Check if listing-link: ", extracted_cards[18].attrs['class'][0] == "listing-link")      # access class by attrs['class'][idx_class1][idx_class2]
+# print()
+# print("Expected URL: ", extracted_cards[18].attrs['href'])
+# print()
+
+
 # Find all <p> tags
-p_tags = r.html.find("p")
-
-contents = r.html.find("a")
-
-print(contents)
-
-##TestPrintContents(contents)
-
-
-""" Test Single Item """
-# print(len(extracted_cards))
-# print()
-# print(str(extracted_cards[18]))
-# print()
-# print(extracted_cards[18].attrs['class'][0] == "listing-link")      # access class by attrs['class'][idx_class1][idx_class2]
-# print()
-# print(extracted_cards[18].attrs['href'])
-
-
+# p_tags = r.html.find("p")
 
 # list_items = r.html.find('p')   # return a list
 # # access syntax tag .class-name
