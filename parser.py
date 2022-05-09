@@ -3,7 +3,7 @@ def getContents(raw_parsed_data):
   return raw_parsed_data.html.find("#content", first=True).find('a')
 
 
-def getCorrectCard(contents):
+def getItemUrl(contents):
   result = []
   
   for link in contents:
@@ -14,5 +14,8 @@ def getCorrectCard(contents):
   return result
 
   
+def getItemByPrice(min_price, max_price, contents):
   
+  pass
+
   

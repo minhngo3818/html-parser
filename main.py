@@ -4,8 +4,8 @@ Result will be the urls of items that user input
 """
 
 from requests_html import HTML, HTMLSession 
-from parser import getCorrectCard, getContents
-from tester import printContents, testTotalTraversing
+from parser import getItemUrl, getContents
+from tester import printContents
 
 """Main Section"""
 test_url = 'https://www.etsy.com/c/home-and-living?ref=catnav-891'
@@ -14,13 +14,17 @@ r = session.get(test_url)
 
 contents = getContents(r)
 
-correct_cards = getCorrectCard(contents)
+items_by_url = getItemUrl(contents)
+
+# On process tesing a single item on find 3 crucial elements
+items_by_li = r.html.find("#content", first=True).find("search-listting-group", first=True)
+
 
 """ Test Section"""
-
-print(correct_cards)
-printContents(correct_cards)
-
+# print(r.html) # -> return a HTML object contain url
+# print(items_by_url)
+# printContents(items_by_url)
+print(items_by_li) # --> currently failed
 
 
 
